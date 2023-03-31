@@ -7,7 +7,15 @@
       ansible.builtin.apt:
         update_cache: yes
 
+    - name: Mettre à jour tous les paquets installés
+      ansible.builtin.apt:
+        upgrade: safe
+
     - name: Installer le paquet htop
       ansible.builtin.apt:
         name: htop
         state: present
+
+    - name: Supprimer les paquets inutiles
+      ansible.builtin.apt:
+        autoremove: yes
