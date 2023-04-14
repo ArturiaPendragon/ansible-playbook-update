@@ -3,6 +3,12 @@
   hosts: all
   become: yes
   tasks:
+    - name: Configurer le serveur DNS à 8.8.8.8
+      ansible.builtin.lineinfile:
+        dest: /etc/resolv.conf
+        regexp: '^nameserver'
+        line: 'nameserver 8.8.8.8'
+        state: present
     - name: Mettre à jour la liste des paquets
       ansible.builtin.yum:
         update_cache: yes
