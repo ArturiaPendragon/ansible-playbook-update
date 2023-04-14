@@ -1,21 +1,22 @@
 ---
-- name: Mettre à jour le système et installer htop
+- name: Mettre à jour Rocky OS et installer htop
   hosts: all
   become: yes
   tasks:
     - name: Mettre à jour la liste des paquets
-      ansible.builtin.apt:
+      ansible.builtin.yum:
         update_cache: yes
 
     - name: Mettre à jour tous les paquets installés
-      ansible.builtin.apt:
-        upgrade: safe
+      ansible.builtin.yum:
+        name: '*'
+        state: latest
 
     - name: Installer le paquet htop
-      ansible.builtin.apt:
+      ansible.builtin.yum:
         name: htop
         state: present
 
     - name: Supprimer les paquets inutiles
-      ansible.builtin.apt:
+      ansible.builtin.yum:
         autoremove: yes
