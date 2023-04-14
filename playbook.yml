@@ -1,5 +1,5 @@
 ---
-- name: Mettre à jour Rocky OS et installer htop
+- name: Mettre à jour CentoOS et installer htop
   hosts: all
   become: yes
   tasks:
