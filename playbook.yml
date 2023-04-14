@@ -9,6 +9,17 @@
         regexp: '^nameserver'
         line: 'nameserver 8.8.8.8'
         state: present
+        
+    - name: Ajouter le dépôt EPEL
+      ansible.builtin.yum_repository:
+        name: epel
+        description: EPEL YUM repo
+        baseurl: https://download.fedoraproject.org/pub/epel/7/$basearch
+        gpgcheck: yes
+        gpgkey: https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+        enabled: yes
+        state: present
+        
     - name: Mettre à jour la liste des paquets
       ansible.builtin.yum:
         update_cache: yes
