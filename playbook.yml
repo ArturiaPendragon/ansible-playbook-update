@@ -6,14 +6,6 @@
     - name: Vérification de la connectivité
       ping:
 
-    - name: Vérification de la version d'Ansible
-      command: ansible --version
-      register: ansible_version
-
-    - name: Affichage de la version d'Ansible
-      debug:
-        var: ansible_version.stdout_lines
-
     - name: Mettre à jour la liste des paquets
       ansible.builtin.apt:
         update_cache: yes
