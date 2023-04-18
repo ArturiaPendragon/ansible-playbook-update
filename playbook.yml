@@ -3,11 +3,11 @@
   hosts: all
   become: yes
   tasks:
-  - name: Vérification de la connectivité
+    - name: Vérification de la connectivité
       ping:
 
-  - name: Vérification de la disponibilité des sockets
-    wait_for:
+    - name: Vérification de la disponibilité des sockets
+      wait_for:
       host: "{{ inventory_hostname }}"
       port: 80
       state: started
