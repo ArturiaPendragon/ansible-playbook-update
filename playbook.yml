@@ -6,13 +6,6 @@
     - name: Vérification de la connectivité
       ping:
 
-    - name: Vérification de la disponibilité des sockets
-      wait_for:
-        host: "{{ inventory_hostname }}"
-        port: 80
-        state: started
-        timeout: 5
-
     - name: Vérification de la version d'Ansible
       command: ansible --version
       register: ansible_version
