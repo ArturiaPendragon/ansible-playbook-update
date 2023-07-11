@@ -1,24 +1,12 @@
 ---
-- name: Mettre à jour le système et installer htop
-  hosts: all
-  become: yes
+- hosts: localhost
+  gather_facts: false
+
   tasks:
-    - name: Vérification de la connectivité
-      ping:
+    - name: Get hostname
+      command: hostname
+      register: hostname_output
 
-    - name: Mettre à jour la liste des paquets
-      ansible.builtin.apt:
-        update_cache: yes
-
-    - name: Mettre à jour tous les paquets installés
-      ansible.builtin.apt:
-        upgrade: safe
-
-    - name: Installer le paquet htop
-      ansible.builtin.apt:
-        name: htop
-        state: present
-
-    - name: Supprimer les paquets inutiles
-      ansible.builtin.apt:
-        autoremove: yes
+    - name: Display hostname
+      debug:
+        var: hostname_output.stdout
