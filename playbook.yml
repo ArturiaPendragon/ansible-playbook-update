@@ -1,8 +1,12 @@
 ---
-- hosts: localhost
-  gather_facts: false
+- name: Testing AEN
+  hosts: all
+  become: yes
 
   tasks:
+    - name: Vérification de la connectivité
+      ping:
+
     - name: Get hostname
       command: hostname
       register: hostname_output
@@ -10,3 +14,8 @@
     - name: Display hostname
       debug:
         var: hostname_output.stdout
+
+    - name: Installer le paquet htop
+      ansible.builtin.apt:
+        name: htop
+        state: present
